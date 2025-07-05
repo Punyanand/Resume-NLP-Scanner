@@ -6,16 +6,27 @@ nltk_data_path= os.path.abspath('nltk_data')
 nltk.download('punkt_tab', download_dir=nltk_data_path)
 from nltk.tokenize import sent_tokenize
 from thefuzz import fuzz
+from skill_set import curated_skills
 
 nlp = spacy.load("en_core_web_sm")
 
+import re
+
 def extract_skills(text):
-    skills = []
-    doc = nlp(text.lower())
-    for token in doc:
-        if token.pos_ in ["NOUN", "PROPN"]:
-            skills.append(token.text)
-    return list(set(skills))
+    text_lower = text.lower()
+    doc = nlp(text_lower)
+    tokens = {token.text for token in doc if token.pos_ in ["NOUN", "PROPN"]}
+
+    matched_skills = set()
+    for skill in curated_skills:
+        if " " in skill:
+            if re.search(rf'\b{re.escape(skill)}\b', text_lower):
+                matched_skills.add(skill)
+        else:
+            if any(fuzz.ratio(skill, token) >= 95 for token in tokens):
+                matched_skills.add(skill)
+    return list(matched_skills)
+
 
 def extract_sentences(text):
     return sent_tokenize(text)

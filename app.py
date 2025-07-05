@@ -11,7 +11,7 @@ nltk.data.path.append(nltk_data_path)
 if not os.path.exists(os.path.join(nltk_data_path, "tokenizers", "punkt")):
     nltk.download("punkt", download_dir=nltk_data_path)
 # nltk.data.path.clear()
-# nltk_data_path= os.path.abspath('C:/Punya-Workspace/my workspace/resume_scanner/venv311/nltk_data/tokenizers')
+# nltk_data_path= os.path.abspath('K:\NLPScanner\venv311\nltk_data\tokenizers\tokenizers')
 # nltk.download('punkt_tab', download_dir=nltk_data_path)
 import streamlit as st
 from utils import extract_text_from_pdf
