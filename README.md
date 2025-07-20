@@ -1,7 +1,7 @@
 # 📝 Resume NLP Scanner
 
 An intelligent resume scanner built with **Python**, **spaCy**, **NLTK**, and **Streamlit**.  
-It parses resumes (PDFs), extracts key skills, and matches them against a job description using fuzzy logic.
+It parses resumes (PDFs), extracts key skills, and matches them against a job description using fuzzy logic..
 
 ---
 
